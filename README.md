@@ -30,9 +30,7 @@ Aplikasi membutuhkan Python versi 3.8+ beserta pustaka pendukung berikut :
 **Catatan :** Script mengintegrasikan pemenuhan dependensi otomatis jika lingkungan kerja Anda tidak mendeteksinya pada kali pertama eksekusi.
 
 ## Panduan Instalasi dan Penggunaan
-1. Prasyarat : Membuat GitHub Personal Access Token (PAT)
-
-Karena program ini menggunakan infrastruktur GitHub Gist sebagai basis data komunikasi terenkripsi, Anda membutuhkan token akses pribadi :
+Prasyarat : Membuat GitHub Personal Access Token (PAT), Karena program ini menggunakan infrastruktur GitHub Gist sebagai basis data komunikasi terenkripsi, Anda membutuhkan token akses pribadi :
 1. Masuk ke akun GitHub Anda.
 2. Buka halaman Settings > Developer Settings > Personal Access Tokens > Tokens (classic).
 3. Klik Generate new token (classic).
