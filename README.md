@@ -22,62 +22,57 @@ TerminalChat/
 ```
 ## Komponen & Kebutuhan Sistem
 
-Aplikasi membutuhkan Python versi 3.8+ beserta pustaka pendukung berikut:
+Aplikasi membutuhkan Python versi 3.8+ beserta pustaka pendukung berikut :
+1. requests (Mengatur interaksi REST API dengan GitHub)
+2. pycryptodome (Menyediakan modul enkripsi tingkat tinggi AES dan PBKDF2)
+3. tinydb (Mesin database berbasis dokumen JSON lokal ringan)
 
-    requests (Mengatur interaksi REST API dengan GitHub)
+**Catatan :** Script mengintegrasikan pemenuhan dependensi otomatis jika lingkungan kerja Anda tidak mendeteksinya pada kali pertama eksekusi.
 
-    pycryptodome (Menyediakan modul enkripsi tingkat tinggi AES dan PBKDF2)
+## Panduan Instalasi dan Penggunaan
+1. Prasyarat : Membuat GitHub Personal Access Token (PAT)
 
-    tinydb (Mesin database berbasis dokumen JSON lokal ringan)
+Karena program ini menggunakan infrastruktur GitHub Gist sebagai basis data komunikasi terenkripsi, Anda membutuhkan token akses pribadi :
+1. Masuk ke akun GitHub Anda.
+2. Buka halaman Settings > Developer Settings > Personal Access Tokens > Tokens (classic).
+3. Klik Generate new token (classic).
+4. Berikan deskripsi token, lalu centang bagian cakupan hak akses wajib: gist.
+5. Salin token rahasia yang dihasilkan (berawalan ghp_...).
 
-Catatan :
-Script mengintegrasikan pemenuhan dependensi otomatis jika lingkungan kerja Anda tidak mendeteksinya pada kali pertama eksekusi.
-Panduan Instalasi dan Penggunaan
-1. Prasyarat: Membuat GitHub Personal Access Token (PAT)
-
-Karena program ini menggunakan infrastruktur GitHub Gist sebagai basis data komunikasi terenkripsi, Anda membutuhkan token akses pribadi:
-
-    Masuk ke akun GitHub Anda.
-
-    Buka halaman Settings > Developer Settings > Personal Access Tokens > Tokens (classic).
-
-    Klik Generate new token (classic).
-
-    Berikan deskripsi token, lalu centang bagian cakupan hak akses wajib: gist.
-
-    Salin token rahasia yang dihasilkan (berawalan ghp_...).
-
-2. Kloning & Pengoperasian
-
+## Kloning & Pengoperasian
 Eksekusi di lingkungan terminal Anda :
+
+1. Kloning repositori (atau langsung jalankan file yang sudah diunduh)
 ```
-# Kloning repositori (atau langsung jalankan file yang sudah diunduh)
 git clone https://github.com/123tool/TerminalChat-Serverless-Encrypted-Mesh-Chat.git
 cd TerminalChat-Serverless-Encrypted-Mesh-Chat
-
-# Atur hak akses eksekusi script (Untuk pengguna Linux/Termux)
+```
+2. Atur hak akses eksekusi script (Untuk pengguna Linux/Termux)
+```
 chmod +x terminalchat.py
-
-# Jalankan aplikasi
+```
+3. Jalankan aplikasi
+```
 python3 terminalchat.py
 ```
-3. Alur Penggunaan
 
-    1. Inisialisasi Pertama: Program akan meminta input GitHub Token Anda untuk membuat klaster registrasi pengguna (user_registry.json) dan ruangan (room_registry.json) dalam status privat/tersembunyi secara otomatis.
-    2. Pembuatan Akun: Buat identitas anonim Anda untuk didaftarkan pada node.
-    3. Penyusunan Room: Buat ruang obrolan baru untuk memperoleh Room ID unik dan tentukan Password ruangan tersebut. Kunci enkripsi AES akan diturunkan dari sandi ini.
-    4. Masuk ke Ruangan: Masukkan ID dan Sandi milik partner bicara Anda untuk langsung bertukar pesan dengan aman.
-    5. Navigasi Chat: Ketik :q di kolom input chat untuk keluar dari room atau ketik :r untuk menyegarkan tampilan.
+## Alur Penggunaan
+1. Inisialisasi Pertama: Program akan meminta input GitHub Token Anda untuk membuat klaster registrasi pengguna (user_registry.json) dan ruangan (room_registry.json) dalam status privat/tersembunyi secara otomatis.
+2. Pembuatan Akun: Buat identitas anonim Anda untuk didaftarkan pada node.
+3. Penyusunan Room: Buat ruang obrolan baru untuk memperoleh Room ID unik dan tentukan Password ruangan tersebut. Kunci enkripsi AES akan diturunkan dari sandi ini.
+4. Masuk ke Ruangan: Masukkan ID dan Sandi milik partner bicara Anda untuk langsung bertukar pesan dengan aman.
+5. Navigasi Chat: Ketik :q di kolom input chat untuk keluar dari room atau ketik :r untuk menyegarkan tampilan.
 
 ## Troubleshooting (Penanganan Masalah)
 
-    1. Error: Gagal mendekompresi pesan masuk / Bad Crypto Key Package
-    Penyebab: Pengguna lain di dalam ruangan mengirim data menggunakan kata sandi ruangan yang berbeda dengan kata sandi yang Anda masukkan saat masuk ke room tersebut. Pastikan distribusi password terkoordinasi secara presisi.
+1. Error : Gagal mendekompresi pesan masuk / Bad Crypto Key Package
+Penyebab : Pengguna lain di dalam ruangan mengirim data menggunakan kata sandi ruangan yang berbeda dengan kata sandi yang Anda masukkan saat masuk ke room tersebut. Pastikan distribusi password terkoordinasi secara presisi.
 
-    2. Aplikasi Mengalami Freeze / Pesan Lambat Masuk
-    Penyebab: Pembatasan batas wajar (rate-limiting) API dari GitHub jika lalu lintas terlalu intensif. Siklus penyegaran internal saat ini adalah ~1.8 detik per siklus untuk mitigasi keamanan jangka panjang.
+2. Aplikasi Mengalami Freeze / Pesan Lambat Masuk
+Penyebab : Pembatasan batas wajar (rate-limiting) API dari GitHub jika lalu lintas terlalu intensif. Siklus penyegaran internal saat ini adalah ~1.8 detik per siklus untuk mitigasi keamanan jangka panjang.
 
-    3. Token GitHub Tidak Valid
-    Penyebab: Pastikan token Anda memiliki tanda centang hak akses pada menu skop gist. Token lama yang kadaluarsa perlu diganti dengan menghapus file gists.json lokal terlebih dahulu guna memicu inisialisasi ulang.
+3.Token GitHub Tidak Valid
+Penyebab : Pastikan token Anda memiliki tanda centang hak akses pada menu skop gist. Token lama yang kadaluarsa perlu diganti dengan menghapus file gists.json lokal terlebih dahulu guna memicu inisialisasi ulang.
+```
 ├── userid.json         # Penyimpanan lokal token enkripsi profil pengguna (TinyDB)
 └── rooms.json          # Penyimpanan lokal riwayat room terverifikasi (TinyDB)
