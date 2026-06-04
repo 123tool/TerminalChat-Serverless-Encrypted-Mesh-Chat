@@ -52,13 +52,32 @@ Karena program ini menggunakan infrastruktur GitHub Gist sebagai basis data komu
 Eksekusi di lingkungan terminal Anda :
 ```
 # Kloning repositori (atau langsung jalankan file yang sudah diunduh)
-git clone [https://github.com/your-repo/terminal-chat.git](https://github.com/your-repo/terminal-chat.git)
-cd terminal-chat
+git clone https://github.com/123tool/TerminalChat-Serverless-Encrypted-Mesh-Chat.git
+cd TerminalChat-Serverless-Encrypted-Mesh-Chat
 
 # Atur hak akses eksekusi script (Untuk pengguna Linux/Termux)
 chmod +x terminalchat.py
 
 # Jalankan aplikasi
 python3 terminalchat.py
+```
+3. Alur Penggunaan
+
+    1. Inisialisasi Pertama: Program akan meminta input GitHub Token Anda untuk membuat klaster registrasi pengguna (user_registry.json) dan ruangan (room_registry.json) dalam status privat/tersembunyi secara otomatis.
+    2. Pembuatan Akun: Buat identitas anonim Anda untuk didaftarkan pada node.
+    3. Penyusunan Room: Buat ruang obrolan baru untuk memperoleh Room ID unik dan tentukan Password ruangan tersebut. Kunci enkripsi AES akan diturunkan dari sandi ini.
+    4. Masuk ke Ruangan: Masukkan ID dan Sandi milik partner bicara Anda untuk langsung bertukar pesan dengan aman.
+    5. Navigasi Chat: Ketik :q di kolom input chat untuk keluar dari room atau ketik :r untuk menyegarkan tampilan.
+
+## Troubleshooting (Penanganan Masalah)
+
+    1. Error: Gagal mendekompresi pesan masuk / Bad Crypto Key Package
+    Penyebab: Pengguna lain di dalam ruangan mengirim data menggunakan kata sandi ruangan yang berbeda dengan kata sandi yang Anda masukkan saat masuk ke room tersebut. Pastikan distribusi password terkoordinasi secara presisi.
+
+    2. Aplikasi Mengalami Freeze / Pesan Lambat Masuk
+    Penyebab: Pembatasan batas wajar (rate-limiting) API dari GitHub jika lalu lintas terlalu intensif. Siklus penyegaran internal saat ini adalah ~1.8 detik per siklus untuk mitigasi keamanan jangka panjang.
+
+    3. Token GitHub Tidak Valid
+    Penyebab: Pastikan token Anda memiliki tanda centang hak akses pada menu skop gist. Token lama yang kadaluarsa perlu diganti dengan menghapus file gists.json lokal terlebih dahulu guna memicu inisialisasi ulang.
 ├── userid.json         # Penyimpanan lokal token enkripsi profil pengguna (TinyDB)
 └── rooms.json          # Penyimpanan lokal riwayat room terverifikasi (TinyDB)
