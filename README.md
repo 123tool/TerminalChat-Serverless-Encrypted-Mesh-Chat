@@ -42,18 +42,24 @@ Karena program ini menggunakan infrastruktur GitHub Gist sebagai basis data komu
 ## Kloning & Pengoperasian
 Eksekusi di lingkungan terminal Anda :
 
-1. Kloning repositori (atau langsung jalankan file yang sudah diunduh)
+1. Kloning repositori
 ```
 git clone https://github.com/123tool/TerminalChat-Serverless-Encrypted-Mesh-Chat.git
 cd TerminalChat-Serverless-Encrypted-Mesh-Chat
 ```
-2. Atur hak akses eksekusi script (Untuk pengguna Linux/Termux)
+2. Eksekusi script
 ```
 chmod +x terminalchat.py
+```
+3. Install dependensi
+```
+pip install -r requirements.txt
 ```
 3. Jalankan aplikasi
 ```
 python3 terminalchat.py
+atau
+python3 terminalchatV2.py
 ```
 
 ## Alur Penggunaan
@@ -65,14 +71,14 @@ python3 terminalchat.py
 
 ## Troubleshooting (Penanganan Masalah)
 
-1. Error : Gagal mendekompresi pesan masuk / Bad Crypto Key Package
-Penyebab : Pengguna lain di dalam ruangan mengirim data menggunakan kata sandi ruangan yang berbeda dengan kata sandi yang Anda masukkan saat masuk ke room tersebut. Pastikan distribusi password terkoordinasi secara presisi.
+- **Error :** Gagal mendekompresi pesan masuk / Bad Crypto Key Package
+- **Penyebab :** Pengguna lain di dalam ruangan mengirim data menggunakan kata sandi ruangan yang berbeda dengan kata sandi yang Anda masukkan saat masuk ke room tersebut. Pastikan distribusi password terkoordinasi secara presisi.
 
-2. Aplikasi Mengalami Freeze / Pesan Lambat Masuk
-Penyebab : Pembatasan batas wajar (rate-limiting) API dari GitHub jika lalu lintas terlalu intensif. Siklus penyegaran internal saat ini adalah ~1.8 detik per siklus untuk mitigasi keamanan jangka panjang.
+- Aplikasi Mengalami Freeze / Pesan Lambat Masuk
+- **Penyebab :** Pembatasan batas wajar (rate-limiting) API dari GitHub jika lalu lintas terlalu intensif. Siklus penyegaran internal saat ini adalah ~1.8 detik per siklus untuk mitigasi keamanan jangka panjang.
 
-3.Token GitHub Tidak Valid
-Penyebab : Pastikan token Anda memiliki tanda centang hak akses pada menu skop gist. Token lama yang kadaluarsa perlu diganti dengan menghapus file gists.json lokal terlebih dahulu guna memicu inisialisasi ulang.
+- Token GitHub Tidak Valid
+- **Penyebab :** Pastikan token Anda memiliki tanda centang hak akses pada menu skop gist. Token lama yang kadaluarsa perlu diganti dengan menghapus file gists.json lokal terlebih dahulu guna memicu inisialisasi ulang.
 ```
 ├── userid.json         # Penyimpanan lokal token enkripsi profil pengguna (TinyDB)
 └── rooms.json          # Penyimpanan lokal riwayat room terverifikasi (TinyDB)
