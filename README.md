@@ -56,8 +56,6 @@ pip install -r requirements.txt
 3. Jalankan aplikasi
 ```
 python3 terminalchat.py
-atau
-python3 terminalchatV2.py
 ```
 
 ## Alur Penggunaan
