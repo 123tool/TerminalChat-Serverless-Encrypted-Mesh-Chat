@@ -19,5 +19,46 @@ TerminalChat/
 │
 ├── terminalchat.py     # Kode sumber utama aplikasi Python
 ├── gists.json          # Berkas konfigurasi GitHub Token Node API (Akan dibuat otomatis)
+```
+## Komponen & Kebutuhan Sistem
+
+Aplikasi membutuhkan Python versi 3.8+ beserta pustaka pendukung berikut:
+
+    requests (Mengatur interaksi REST API dengan GitHub)
+
+    pycryptodome (Menyediakan modul enkripsi tingkat tinggi AES dan PBKDF2)
+
+    tinydb (Mesin database berbasis dokumen JSON lokal ringan)
+
+Catatan :
+Script mengintegrasikan pemenuhan dependensi otomatis jika lingkungan kerja Anda tidak mendeteksinya pada kali pertama eksekusi.
+Panduan Instalasi dan Penggunaan
+1. Prasyarat: Membuat GitHub Personal Access Token (PAT)
+
+Karena program ini menggunakan infrastruktur GitHub Gist sebagai basis data komunikasi terenkripsi, Anda membutuhkan token akses pribadi:
+
+    Masuk ke akun GitHub Anda.
+
+    Buka halaman Settings > Developer Settings > Personal Access Tokens > Tokens (classic).
+
+    Klik Generate new token (classic).
+
+    Berikan deskripsi token, lalu centang bagian cakupan hak akses wajib: gist.
+
+    Salin token rahasia yang dihasilkan (berawalan ghp_...).
+
+2. Kloning & Pengoperasian
+
+Eksekusi di lingkungan terminal Anda :
+```
+# Kloning repositori (atau langsung jalankan file yang sudah diunduh)
+git clone [https://github.com/your-repo/terminal-chat.git](https://github.com/your-repo/terminal-chat.git)
+cd terminal-chat
+
+# Atur hak akses eksekusi script (Untuk pengguna Linux/Termux)
+chmod +x terminalchat.py
+
+# Jalankan aplikasi
+python3 terminalchat.py
 ├── userid.json         # Penyimpanan lokal token enkripsi profil pengguna (TinyDB)
 └── rooms.json          # Penyimpanan lokal riwayat room terverifikasi (TinyDB)
